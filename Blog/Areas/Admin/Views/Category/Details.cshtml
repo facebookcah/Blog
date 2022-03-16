@@ -1,0 +1,93 @@
+﻿@model Blog.Domains.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+        }
+
+    h2 {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+    }
+</style>
+<h2>Chi tiết</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+   
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @if (Model.Description == null)
+            {
+                <p>< Không có mô tả ></p>
+            }
+            else
+            {
+                <p>@Model.Description</p>
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @if (Model.Status == 0)
+            {
+                <p>Hoạt động</p>
+            }
+            else
+            {
+                <p>Không hoạt động</p>
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedOn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("edit","Category",new { id=Model.Id})" class="btn btn-primary">Sửa</a>
+    <a href="@Url.Action("index","Category",new { id=Model.Id})" class="btn btn-warning">Quay lại</a>
+
+</p>

@@ -1,0 +1,48 @@
+﻿
+@model Blog.Domains.Post
+@using System;
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = ViewBag.list as List<Blog.Domains.Post>;
+}
+
+
+
+@{
+    var date = (DateTime)Model.PostedOn;
+    var dayOfWeek = date.DayOfWeek;
+}
+<style>
+</style>
+<p style="color:gray;text-align:right;font-size:medium;">@dayOfWeek, @date.ToString("dd/MM/yyyy - HH:mm")</p>
+<h1>@Html.DisplayFor(m => m.Title)</h1>
+<p>@Html.DisplayFor(m => m.PostContent)</p>
+<h6>TIN LIÊN QUAN</h6>
+<ul style="color:green">
+    @foreach (var item in list)
+    {
+        <li>@Html.ActionLink(@item.Title, "Detail", new { id = item.Id })</li>
+    }
+</ul>
+@using (Html.BeginForm("Post", "Comment", FormMethod.Post))
+{
+    <div class="bg-light p-2">
+        <input type="email" placeholder="Nhập email của bạn" name="email" class="form-control mb-2" />
+
+        <div class="d-flex flex-row align-items-start">
+            <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+            <textarea class="form-control ml-1 shadow-none textarea" placeholder="Bạn nghĩ gì về tin này?" name="content"></textarea>
+        </div>
+        <input type="number" value="@Model.Id" name="PostId" hidden />
+
+        <div class="mt-2 text-right">
+            <button class="btn btn-primary btn-sm shadow-none" type="submit">Đăng</button>
+        </div>
+    </div>
+
+}
+@if (ViewBag.Message != null)
+{
+    <span class="alert alert-warning">Bạn chưa đăng nhập! Hãy đăng nhập để bình luận @Html.Action("Login", "LoginClient") </span>
+}

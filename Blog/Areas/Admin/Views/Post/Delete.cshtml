@@ -1,0 +1,59 @@
+﻿@model Blog.Domains.Post
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+        }
+
+    h2 {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+    }
+</style>
+<h2>Xóa</h2>
+
+<h3>Bạn có muốn xóa?</h3>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+            <a href="@Url.Action("index","Post")" class="btn btn-warning">Trở lại</a>
+        </div>
+    }
+</div>

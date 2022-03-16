@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<Blog.Domains.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="color:Highlight;">Just Blog</h2>
+<hr />
+@foreach (var item in Model)
+{
+    <div>
+        <h1 style="color:aqua;">
+            @Html.ActionLink(@item.Title, "Detail", new { id=item.Id })
+        </h1>
+        <p style="color:gray; font-size:17px; margin-top:-10px;">
+            Posted @item.PostedOn with @item.RateCount rate with @item.ViewCount view(s)
+        </p>
+        <p>
+            @if (item.PostContent.Length > 100)
+            {
+                @item.PostContent.Substring(0, 100)
+            }
+            else
+            {
+                @item.PostContent
+            }
+        </p>
+    </div>
+    <hr />
+}
+
+
+

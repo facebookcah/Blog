@@ -1,0 +1,88 @@
+﻿@model Blog.Domains.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            color: white;
+        }
+
+    h2 {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+    }
+</style>
+<h2>Chi tiết</h2>
+
+<div>
+   
+    <dl class="dl-horizontal">
+        <dt>
+            Tiêu đề bài viết    
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Post.Title)
+        </dd>
+
+        
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CommentText)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CommentText)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @if (Model.Status == 0)
+            {
+                <p>Hiện</p>
+            }
+            else
+            {
+                <p>Ẩn</p>
+
+            }
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("index","Comment",new { id=Model.Id})" class="btn btn-warning">Quay lại</a>
+</p>
